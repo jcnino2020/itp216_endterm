@@ -56,7 +56,7 @@ define('LOCKOUT_MINUTES', 15);
 define('OTP_EXPIRY_SECONDS', 300); // 5 minutes
 define('OTP_MAX_ATTEMPTS', 3);      // Max 3 incorrect OTP guesses before invalidation
 define('OTP_RESEND_COOLDOWN', 60);  // 60 seconds rate limit for requesting a new OTP
-define('OTP_DEMO_MODE', true);      // Set true to keep on-screen fallback demo visible
+define('OTP_DEMO_MODE', false);     // Disabled: Real out-of-band email delivery is active
 
 // ------------------------------------------------------------------------------
 // 5. Gmail SMTP Email Sender Configuration (PHPMailer)

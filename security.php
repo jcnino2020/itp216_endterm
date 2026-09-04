@@ -292,37 +292,37 @@ function send_otp_email(string $recipient_email, string $plain_otp): array {
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         </head>
-        <body style='font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; background-color: #0b0d11; color: #f3f4f6; padding: 24px 12px; margin: 0;'>
-            <div style='max-width: 480px; margin: 0 auto; background: #12151b; border: 1px solid #232836; border-radius: 12px; padding: 32px 28px; box-shadow: 0 4px 14px rgba(0,0,0,0.35);'>
+        <body style='font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif; background-color: #f8fafc; color: #0f172a; padding: 28px 12px; margin: 0;'>
+            <div style='max-width: 460px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 32px 28px; box-shadow: 0 4px 12px rgba(0,0,0,0.05);'>
                 <div style='text-align: center; margin-bottom: 24px;'>
-                    <div style='display: inline-block; padding: 4px 12px; background: #181c24; border: 1px solid #232836; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #38bdf8; margin-bottom: 12px;'>
+                    <div style='display: inline-block; padding: 4px 12px; background: #f1f5f9; border: 1px solid #e2e8f0; border-radius: 9999px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #2563eb; margin-bottom: 12px;'>
                         ITP216 Security System
                     </div>
-                    <h1 style='color: #ffffff; font-size: 21px; margin: 0 0 6px 0; font-weight: 600; letter-spacing: -0.015em;'>Two-Factor Authentication</h1>
-                    <p style='color: #9ca3af; font-size: 13px; margin: 0;'>One-time security verification code</p>
+                    <h1 style='color: #0f172a; font-size: 21px; margin: 0 0 6px 0; font-weight: 700; letter-spacing: -0.015em;'>Two-Factor Authentication</h1>
+                    <p style='color: #64748b; font-size: 13px; margin: 0;'>One-time security verification passcode</p>
                 </div>
 
-                <p style='font-size: 14px; line-height: 1.5; color: #d1d5db; margin: 0 0 20px 0;'>
+                <p style='font-size: 14px; line-height: 1.5; color: #334155; margin: 0 0 20px 0;'>
                     A sign-in attempt requires identity verification. Enter the 6-digit passcode below to complete authentication:
                 </p>
 
-                <div style='background: #181c24; border: 1px solid #232836; border-radius: 8px; padding: 18px; text-align: center; margin: 20px 0 24px 0;'>
-                    <div style='font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: #6b7280; margin-bottom: 6px;'>Verification Code</div>
-                    <span style='font-family: ui-monospace, \"Courier New\", Courier, monospace; font-size: 34px; font-weight: 700; letter-spacing: 8px; color: #38bdf8;'>{$plain_otp}</span>
+                <div style='background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; text-align: center; margin: 20px 0 24px 0;'>
+                    <div style='font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #64748b; margin-bottom: 6px;'>Verification Code</div>
+                    <span style='font-family: ui-monospace, \"Courier New\", Courier, monospace; font-size: 34px; font-weight: 700; letter-spacing: 8px; color: #0f172a;'>{$plain_otp}</span>
                 </div>
 
-                <div style='background: #181c24; border-left: 3px solid #38bdf8; border-radius: 4px; padding: 12px 14px; margin-bottom: 12px;'>
-                    <div style='font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #38bdf8; margin-bottom: 3px;'>Validity Period</div>
-                    <div style='font-size: 13px; color: #d1d5db; line-height: 1.4;'>Expires in <strong>" . (OTP_EXPIRY_SECONDS / 60) . " minutes</strong>. Single-use only.</div>
+                <div style='background: #f0f9ff; border-left: 3px solid #2563eb; border-radius: 4px; padding: 12px 14px; margin-bottom: 12px;'>
+                    <div style='font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #1d4ed8; margin-bottom: 3px;'>Validity Period</div>
+                    <div style='font-size: 13px; color: #1e3a8a; line-height: 1.4;'>Expires in <strong>" . (OTP_EXPIRY_SECONDS / 60) . " minutes</strong>. Single-use only.</div>
                 </div>
 
-                <div style='background: #181c24; border-left: 3px solid #f59e0b; border-radius: 4px; padding: 12px 14px; margin-bottom: 24px;'>
-                    <div style='font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #f59e0b; margin-bottom: 3px;'>Security Notice</div>
-                    <div style='font-size: 13px; color: #d1d5db; line-height: 1.4;'>If you did not request this code, your credentials may be exposed. Change your password immediately.</div>
+                <div style='background: #fffbeb; border-left: 3px solid #d97706; border-radius: 4px; padding: 12px 14px; margin-bottom: 24px;'>
+                    <div style='font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #b45309; margin-bottom: 3px;'>Security Notice</div>
+                    <div style='font-size: 13px; color: #78350f; line-height: 1.4;'>If you did not request this code, your credentials may be exposed. Change your password immediately.</div>
                 </div>
 
-                <hr style='border: none; border-top: 1px solid #1f2533; margin: 20px 0;'>
-                <p style='font-size: 11px; color: #6b7280; text-align: center; margin: 0; line-height: 1.4;'>
+                <hr style='border: none; border-top: 1px solid #e2e8f0; margin: 20px 0;'>
+                <p style='font-size: 11px; color: #94a3b8; text-align: center; margin: 0; line-height: 1.4;'>
                     ITP216 Endterm Project &bull; Automated Security Dispatcher<br>
                     This is an automated security transmission. Please do not reply.
                 </p>

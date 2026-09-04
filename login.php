@@ -137,7 +137,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card-header text-center">
             <div class="shield-icon"><span class="material-icons">shield</span></div>
             <h2>Secure Sign In</h2>
-            <p class="subtitle">Step 1 of 2: Primary Credential Verification</p>
         </div>
 
         <div class="card-body">
@@ -178,11 +177,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="auth-links">
                 Don't have an account? <a href="register.php">Register now</a> | <a href="setup.php">Setup Database</a>
-            </div>
-
-            <div class="security-note">
-                <strong>Defense Rationale (Requirement 2 & 4):</strong>
-                Credential verification uses <code>password_verify()</code> with constant-time dummy checking. Accounts are temporarily locked for <code><?= LOCKOUT_MINUTES ?> minutes</code> after <code><?= MAX_FAILED_ATTEMPTS ?> consecutive failed attempts</code>.
             </div>
         </div>
     </div>

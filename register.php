@@ -170,11 +170,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="auth-links">
                 Already registered? <a href="login.php">Log in to your account</a>
             </div>
-
-            <div class="security-note">
-                <strong>Defense Rationale (Requirement 1):</strong>
-                Passwords are never stored in plaintext. They are processed using <code>password_hash()</code> with <code>PASSWORD_ARGON2ID</code> (memory-hard, resistant to GPU/ASIC attacks) with adaptive <code>PASSWORD_BCRYPT</code> fallback.
-            </div>
         </div>
     </div>
 

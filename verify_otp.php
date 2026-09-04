@@ -137,27 +137,10 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="card-header text-center">
             <div class="shield-icon"><span class="material-icons">smartphone</span></div>
             <h2>Two-Factor Verification</h2>
-            <p class="subtitle">Step 2 of 2: Enter code sent to <strong><?= e($user_email) ?></strong></p>
+            <p class="subtitle">Enter the code sent to <strong><?= e($user_email) ?></strong></p>
         </div>
 
         <div class="card-body">
-            <?php if (OTP_DEMO_MODE && !empty($demo_otp)): ?>
-                <!-- Simulated 2FA Delivery Banner for Defense Demonstration -->
-                <div class="demo-banner">
-                    <div class="demo-banner-title">
-                        <span class="material-icons" style="font-size: 1rem; vertical-align: middle;">notifications</span> Live OTP & Demo Fallback
-                    </div>
-                    <p style="font-size: 0.8rem; color: var(--text-secondary);">
-                        Code dispatched to <strong><?= e($user_email) ?></strong>. On-screen fallback:
-                    </p>
-                    <div class="demo-otp-display" id="demoCodeDisplay"><?= e($demo_otp) ?></div>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-secondary btn-sm" onclick="autoFillOtp('<?= e($demo_otp) ?>')">
-                            <span class="material-icons" style="font-size: 0.95rem; vertical-align: -1px;">content_copy</span> Auto-Fill Code
-                        </button>
-                    </div>
-                </div>
-            <?php endif; ?>
 
             <?php if (!empty($info_msg)): ?>
                 <div class="alert-box alert-success">
@@ -203,11 +186,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="auth-links">
                 <a href="logout.php">&larr; Cancel and return to Login</a>
             </div>
-
-            <div class="security-note">
-                <strong>Defense Rationale (Requirement 3 & Lab 5):</strong>
-                2FA satisfies the possession factor ("something you have"). Codes are 6 digits, cryptographically hashed in storage, valid for 5 minutes, and invalidated after <?= OTP_MAX_ATTEMPTS ?> failed attempts. Successful verification triggers <code>session_regenerate_id(true)</code> to mitigate Session Fixation (CWE-384).
-            </div>
         </div>
     </div>
 
@@ -238,13 +216,6 @@ elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         updateCountdown();
-
-        // Helper to auto-fill code from demo banner
-        function autoFillOtp(code) {
-            const input = document.getElementById('otpInput');
-            input.value = code;
-            input.focus();
-        }
     </script>
 </body>
 </html>
