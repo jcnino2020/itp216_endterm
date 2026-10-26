@@ -16,3 +16,9 @@ Desktop.ini
 *.swp
 *.swo
 *~
+
+# Private credentials
+.env
+.env.*
+!.env.example
+*.private.php

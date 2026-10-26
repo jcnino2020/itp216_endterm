@@ -16,6 +16,19 @@ if (php_sapi_name() !== 'cli' && count(get_included_files()) === 1) {
     exit('Direct script access is forbidden.');
 }
 
+// Private configuration must be outside the web root or supplied through the environment.
+$itpPrivateConfig = getenv('ITP_CONFIG_FILE') ?: dirname(__DIR__) . '/itp216.private.php';
+$itpSettings = is_file($itpPrivateConfig) ? require $itpPrivateConfig : [];
+if (!is_array($itpSettings)) {
+    throw new RuntimeException('Invalid private configuration.');
+}
+function itp_config(string $name, string $default = ''): string
+{
+    global $itpSettings;
+    $value = getenv($name);
+    return $value !== false ? $value : (string) ($itpSettings[$name] ?? $default);
+}
+
 // ------------------------------------------------------------------------------
 // 1. Error Reporting Configuration
 // In production/defense, suppress verbose database error details from end users
@@ -29,11 +42,11 @@ ini_set('log_errors', 1);
 // 2. Database Connection Credentials
 // Adjust these credentials to match your local or shared hosting environment.
 // ------------------------------------------------------------------------------
-define('DB_HOST', '127.0.0.1');
-define('DB_PORT', '3306');
-define('DB_NAME', 'itp216');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_HOST', itp_config('DB_HOST', 'localhost'));
+define('DB_PORT', itp_config('DB_PORT', '3306'));
+define('DB_NAME', itp_config('DB_NAME', 'itp216'));
+define('DB_USER', itp_config('DB_USER', 'root'));
+define('DB_PASS', itp_config('DB_PASS', ''));
 define('DB_CHARSET', 'utf8mb4');
 
 // ------------------------------------------------------------------------------
@@ -61,15 +74,16 @@ define('OTP_DEMO_MODE', false);     // Disabled: Real out-of-band email delivery
 // ------------------------------------------------------------------------------
 // 5. Gmail SMTP Email Sender Configuration (PHPMailer)
 // ------------------------------------------------------------------------------
-define('SMTP_ENABLED', true);
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 465);
-define('SMTP_USERNAME', 'jcninonuevo04@gmail.com');
-define('SMTP_PASSWORD', 'emmqoblfmkxmcztm');
-define('SMTP_FROM_EMAIL', 'jcninonuevo04@gmail.com');
-define('SMTP_FROM_NAME', 'ITP216 Security System (no-reply)');
-define('SMTP_REPLY_TO_EMAIL', 'no-reply@itp216.com');
-define('SMTP_REPLY_TO_NAME', 'ITP216 No-Reply');
+define('SMTP_HOST', itp_config('SMTP_HOST', 'smtp.gmail.com'));
+define('SMTP_PORT', itp_config('SMTP_PORT', '465'));
+define('SMTP_USERNAME', itp_config('SMTP_USERNAME', ''));
+define('SMTP_PASSWORD', itp_config('SMTP_PASSWORD', ''));
+define('SMTP_FROM_EMAIL', itp_config('SMTP_FROM_EMAIL', ''));
+define('SMTP_FROM_NAME', itp_config('SMTP_FROM_NAME', 'ITP216'));
+define('SMTP_REPLY_TO_EMAIL', itp_config('SMTP_REPLY_TO_EMAIL', ''));
+define('SMTP_REPLY_TO_NAME', itp_config('SMTP_REPLY_TO_NAME', 'ITP216'));
+
+define('SMTP_ENABLED', SMTP_USERNAME !== '' && SMTP_PASSWORD !== '');
 
 // ------------------------------------------------------------------------------
 // 5. Session Timeout Settings
